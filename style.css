@@ -1,0 +1,544 @@
+/* reseting */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+/* defining properties of the container */
+.container {
+  background-color: palevioletred;
+  display: flex;
+  width: 1400px;
+  flex-direction: row;
+  min-height: 850px;
+  border-radius: 10px;
+}
+/* defining left side of the contaner */
+.left {
+  width: 55%;
+  margin: 20px;
+}
+/* defining the calender part of the left side */
+.calendar {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  background-color: lavender;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+/* defining top part of the container */
+.calendar .top {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  height: 67px;
+  padding: 54px;
+}
+/* defining month and year to be displayed at the top */
+.calendar .top .month_year {
+  font-family: "Poppins", sans-serif;
+  font-weight: 550;
+  font-size: 1.563rem;
+}
+/* defining the prev month and next month buttons */
+.calendar .top .prev_button,
+.calendar .top .next_button {
+  cursor: pointer;
+}
+.calendar .top .prev_button:hover,
+.calendar .top .next_button:hover {
+  color: blueviolet;
+}
+/* defining the weekdays row */
+.calendar .weekdays {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  font-weight: 550px;
+  margin-bottom: 10px;
+  padding: 0 20px;
+}
+.calendar .weekdays div {
+  text-align: center;
+  font-size: 1rem;
+  height: 100%;
+  width: 14%;
+  font-family: "Open Sauce One", sans-serif;
+  font-weight: 550;
+}
+/* defining the dates part of the calender */
+.calendar .days {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0 20px;
+}
+.calendar .days .day {
+  font-family: "Old Standard TT", serif;
+  height: 96px;
+  width: 14%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 2px;
+  border: 2px solid black;
+}
+/* defining the prev dates and next dates of the respective revious nad next months */
+.calendar .days .prev_day,
+.calendar .days .next_day {
+  color: burlywood;
+  border: 2px solid brown;
+}
+.calendar .days :not(.prev_day, .next_day):hover {
+  background-color: blueviolet;
+  color: white;
+}
+.calendar .days .prev_day:hover,
+.calendar .days .next_day:hover {
+  background-color: lightcoral;
+  color: white;
+}
+/* defining today's date */
+.calendar .days .today {
+  background-color: yellow;
+  color: brown;
+  font-size: 1.875rem;
+}
+/* defining the active date */
+.calendar .days :not(.prev_day, .next_day).active {
+  background-color: blueviolet;
+  font-size: 1.875rem;
+  color: white;
+  box-shadow: 0 0 10px 2px blueviolet;
+}
+/* defining events and tasks */
+.calendar .days .event,
+.calendar .days .tasks {
+  position: relative;
+}
+.calendar .days .tasks::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 4px;
+  width: 50px;
+  bottom: 10%;
+  background-color: orange;
+  border-radius: 38px;
+}
+.calendar .days .event::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  bottom: 20%;
+  background-color: red;
+  border-radius: 38px;
+}
+.calendar .days .active.event::before {
+  bottom: 27%;
+}
+.calendar .days .active.tasks::after {
+  bottom: 17%;
+}
+/* defining bottom section of the calendar */
+.calendar .go_to {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.calendar .go_to .to_date {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+}
+.calendar .go_to .to_date .to_date_input {
+  border: none;
+  outline: none;
+  border-right: 1px solid black;
+  padding: 5px;
+}
+.calendar .go_to .to_date .go_to_button {
+  background-color: transparent;
+  border: none;
+  padding: 6px;
+  cursor: pointer;
+}
+.calendar .go_to .to_date .go_to_button:hover {
+  background-color: blueviolet;
+  color: white;
+}
+.calendar .go_to .today_button {
+  padding: 4px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+  padding: 5px;
+}
+.calendar .go_to .today_button:hover {
+  background-color: blueviolet;
+  color: white;
+}
+/* right section */
+.right {
+  margin: 20px 20px 20px 0;
+  width: 40%;
+  min-height: 100%;
+}
+.event-tasks_bar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+.event-tasks_bar .selected_date_row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 3.75rem;
+  margin: 67px 0 29px 0;
+  padding: 0 67px 0 67px;
+  align-items: center;
+  justify-content: space-between;
+  background-color: blueviolet;
+  border-radius: 10px;
+}
+.event-tasks_bar .selected_date_row .selected_day {
+  font-size: 2.5rem;
+  font-family: 'Kanit', sans-serif;
+  color: white;
+}
+.event-tasks_bar .selected_date_row .selected_date {
+  font-family: 'Kanit', sans-serif;
+  color: lavender;
+}
+/* event bar */
+.event-tasks_bar .event_heading {
+  color: white;
+  font-size: 1.563rem;
+  width: 100%;
+  padding: 20px;
+  font-family: "Open Sauce One", sans-serif;
+  background-color: red;
+  border-radius: 10px 10px 0 0;
+}
+.event-tasks_bar .event_table {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  margin-bottom: 5px;
+  max-height: 224px;
+  overflow: auto;
+  border-radius: 0 0 10px 10px;
+}
+.event-tasks_bar .event_table .event_row {
+  width: 100%;
+  padding: 0 20px 0 20px;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.event-tasks_bar .event_table .event_row .event-time_display {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+.event-tasks_bar .event_table .event_row .event-time_display .event_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.event-tasks_bar .event_table .event_row .event-time_display .event_title i {
+  font-size: 0.483rem;
+  margin: 5px;
+}
+.event-tasks_bar .event_table .event_row .event-time_display .event_title .event_name{
+  font-size: 1rem;
+}
+.event-tasks_bar .event_table .event_row .event-time_display .time {
+  padding: 2px;
+}
+
+.event-tasks_bar .event_table .event_row .dustbin:hover{
+  cursor: pointer;
+}
+/* tasks bar */
+.event-tasks_bar .tasks_heading {
+  color: white;
+  font-size: 1.563rem;
+  width: 100%;
+  padding: 20px;
+  font-family: "Open Sauce One", sans-serif;
+  background-color: orange;
+  border-radius: 10px 10px 0 0;
+}
+.event-tasks_bar .tasks_table {
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
+  border-radius: 0 0 10px 10px;
+  max-height: 224px;
+  overflow: auto;
+}
+.event-tasks_bar .tasks_table .tasks_row {
+  width: 100%;
+  padding: 0 20px 0 20px;
+  margin: 10px 0 10px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.event-tasks_bar .tasks_table .tasks_row .tasks-time_display {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+.event-tasks_bar .tasks_table .tasks_row .tasks-time_display .tasks_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.event-tasks_bar .tasks_table .tasks_row .tasks-time_display .tasks_title i {
+  font-size: 0.483rem;
+  margin: 5px;
+}
+.event-tasks_bar .tasks_table .tasks_row .tasks-time_display .tasks_title .tasks_name{
+  font-size: 1rem;
+}
+.event-tasks_bar .tasks_table .tasks_row .tasks-time_display .time {
+  padding: 2px;
+}
+
+.event-tasks_bar .tasks_table .tasks_row .dustbin:hover{
+  cursor: pointer;
+}
+/* event-task menu */
+.event-tasks_bar .add_event-tasks{
+  position: absolute;
+  bottom: 80px;
+  overflow: hidden;
+  max-height: 0;
+  width: 100%;
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 10px;
+  transition: max-height 0.5s;
+}
+.event-tasks_bar .add_event-tasks.active{
+  max-height: 300px;
+  transition: max-height 0.5s;
+}
+/* event menu */
+.event-tasks_bar .add_event-tasks .add_event_menu{
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  width: 55%;
+  background-color: red;
+  color: white;
+  border-radius: 6px;
+  margin: 3px 0 3px 3px;
+  transition: width 1s;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu:focus-within{
+  width: 70%;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu:focus-within + .add_tasks_menu{
+  width: 34%;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_heading{
+  width: calc(100% - 3.4px);
+  height: 50px;
+  padding: 15px;
+  border-bottom: 1px solid white;
+  font-family: "Open Sauce One", sans-serif;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_heading .title{
+  font-size: 1.2rem;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body input{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 1rem;
+  height: 35px;
+  font-family: 'Poppins', sans-serif;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body input[type="text"]{
+  padding: 5px;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body input[type="time"]{
+  width: 55%;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body input::placeholder{
+  color: white;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body input:focus{
+  border-color: black;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body .add_event_button{
+  font-size: 1rem;
+  height: 35px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: red;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 3px;
+  width: 50%;
+  margin-bottom: 5px;
+}
+.event-tasks_bar .add_event-tasks .add_event_menu .add_event_body .add_event_button:hover{
+  background-color: white;
+  color: red;
+  border: red;
+}
+/* tasks menu */
+.event-tasks_bar .add_event-tasks .add_tasks_menu{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  background-color: orange;
+  color: white;
+  border-radius: 6px;
+  margin: 3px 3px 3px 0;
+  transition: width 1s;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu:focus-within{
+  width: 70%;
+}
+.add_event_menu:has(+ .add_tasks_menu:focus-within){
+  width: 34%;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_heading{
+  display: flex;
+  width: calc(100% - 3.4px);
+  height: 50px;
+  padding: 15px;
+  border-bottom: 1px solid white;
+  font-family: "Open Sauce One", sans-serif;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_heading .title{
+  font-size: 1.2rem;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body input{
+  outline: none;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 1rem;
+  height: 35px;
+  font-family: 'Poppins', sans-serif;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body input[type="text"]{
+  padding: 5px;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body input[type="time"]{
+  width: 55%;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body input::placeholder{
+  color: white;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body input:focus{
+  border-color: black;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_body .add_tasks_button{
+  font-size: 1rem;
+  height: 35px;
+  width: 50%;
+  margin-top: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: orange;
+  border-radius: 5px;
+  padding: 3px;
+  margin-bottom: 5px;
+}
+.event-tasks_bar .add_event-tasks .add_tasks_menu .add_tasks_button:hover{
+  background-color: white;
+  color: orange;
+  border: orange;
+}
+/* open menu */
+.open_button{
+  position: absolute;
+  bottom: 10px;
+  right: 2px;
+}
+.open_button .open_menu{
+  width: 40px;
+  height: 40px;
+  background-color: blueviolet;
+  outline: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.open_button .open_menu:hover{
+  background-color: white;
+  color: blueviolet;
+}
+.open_button .open_menu i{
+  pointer-events: none;
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendar</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=Old+Standard+TT:wght@700&family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- left section -->
+      <section class="left">
+        <!-- Calendar part -->
+        <div class="calendar">
+          <div class="top">
+            <i class="fa fa-angle-left prev_button"></i>
+            <!-- prev button -->
+            <div class="month_year"></div>
+            <i class="fa fa-angle-right next_button"></i>
+            <!-- next button-->
+          </div>
+          <div class="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div class="days"></div>
+          <div class="go_to">
+            <form class="to_date">
+              <input type="date" class="to_date_input" required />
+              <button type="submit" class="go_to_button">Go to</button>
+            </form>
+            <button type="button" class="today_button">Today</button>
+          </div>
+        </div>
+      </section>
+      <!-- right section -->
+      <section class="right">
+        <!--event and tasks bars-->
+        <div class="event-tasks_bar">
+          <div class="selected_date_row">
+            <div class="selected_day"></div>
+            <div class="selected_date"></div>
+          </div>
+          <!--event columns-->
+          <div class="event_heading">Events</div>
+          <div class="event_table"></div>
+          <!--tasks column-->
+          <div class="tasks_heading">Tasks</div>
+          <div class="tasks_table"></div>
+          <!-- add events-tasks -->
+          <div class="add_event-tasks">
+            <div class="add_event_menu">
+              <div class="add_event_heading">
+                <div class="title">Add Event</div>
+              </div>
+              <form class="add_event_body">
+                <input
+                  type="text"
+                  placeholder="Event Name"
+                  class="event_name"
+                />
+                <input
+                  type="text"
+                  placeholder="Event from (hh:mm)"
+                  onfocus="this.type ='time'; this.value ='15:45' "
+                  class="event_from"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Event to (hh:mm)"
+                  onfocus="this.type ='time', this.value='15:45'"
+                  class="event_to"
+                  required
+                />
+                <button type="submit" class="add_event_button">Add</button>
+              </form>
+            </div>
+            <div class="add_tasks_menu">
+              <div class="add_tasks_heading">
+                <div class="title">Add Task</div>
+              </div>
+              <form class="add_tasks_body">
+                <input type="text" placeholder="Task Name" class="tasks_name" />
+                <input
+                  type="text"
+                  placeholder="Task From (hh:mm)"
+                  onfocus="this.type ='time', this.value='15:45'"
+                  class="tasks_from"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Task To (hh:mm)"
+                  onfocus="this.type ='time', this.value='15:45'"
+                  class="tasks_to"
+                  required
+                />
+                <button type="submit" class="add_tasks_button">Add</button>
+              </form>
+            </div>
+          </div>
+          <div class="open_button">
+            <button type="button" class="open_menu">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
